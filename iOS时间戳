@@ -1,0 +1,20 @@
+时间戳转时间（毫秒级别）
+
+设置时间格式
+NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+[formatter setDateStyle:NSDateFormatterMediumStyle];
+[formatter setTimeStyle:NSDateFormatterShortStyle];
+设置你想要的格式,hh与HH的区别:分别表示12小时制,24小时制
+[formatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"];         
+设置时区,这个对于时间的处理有时很重要        
+NSTimeZone* timeZone = [NSTimeZone timeZoneWithName:@"Asia/Shanghai"];
+[formatter setTimeZone:timeZone];
+
+NSDate *confromTimesp = [NSDate dateWithTimeIntervalSince1970:(message.sentTime / 1000)];
+NSString *confromTimespStr = [formatter stringFromDate:confromTimesp];
+NSLog(@"发送时间 %@",confromTimespStr);
+
+时间转时间戳
+NSDate *now = [NSDate date];    
+NSString *time = [NSString stringWithFormat:@"%ld",(long)[now timeIntervalSince1970]];
+NSLog(@"时间戳是 %@",time);
